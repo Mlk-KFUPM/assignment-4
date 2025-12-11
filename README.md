@@ -1,30 +1,88 @@
-# Assignment 3 – Portfolio Enhancements
+# Abdulmalik Alsafadi | Portfolio
 
-Portfolio site built with semantic HTML, modern CSS (variables, grid, flexbox), and JavaScript for dynamic UI. This iteration adds sorting, state persistence, and an inspirational quotes fetch with graceful fallbacks.
+A modern, responsive portfolio website showcasing my projects, skills, and certifications as a Software Engineering student at KFUPM.
 
-## 🚀 Features
-- Dynamic projects with filter + sort (by year/title) and year badges.
-- Contact form with inline validation (length + email checks).
-- Theme toggle persisted in `localStorage`.
-- State management: remembered visitor name, simulated login toggle, show/hide projects toggle (all persisted).
-- Conditional guidance card (Beginner/Intermediate/Advanced).
-- Inspirational quote pulled from DummyJSON API with fallback notice.
-- Performance tweaks: lazy-loaded images.
+## ✨ Features
 
-## 🖥️ Run Locally
-1. Clone the repo:
+### Core Functionality
+- **Dynamic Projects** - Filter by technology, sort by date/title, with year badges
+- **Interactive Skills Visualization** - Categorized skills with animated progress bars
+- **Theme Toggle** - Dark/Light mode with localStorage persistence
+- **API Integration** - Live inspirational quotes from DummyJSON API with fallback
+- **Contact Form** - Client-side validation with inline error messages
+
+### Premium Design
+- **Animated Hero Section** - Typing effect greeting with gradient text
+- **Scroll Progress Indicator** - Visual progress bar at top of page
+- **Reveal Animations** - Sections fade in as you scroll
+- **Glassmorphism Cards** - Modern translucent design with blur effects
+- **Premium Typography** - Inter font from Google Fonts
+
+### State Persistence
+- Remembered visitor name
+- Theme preference
+- Project visibility toggle
+- Simulated login state
+
+## 🛠️ Tech Stack
+
+- **HTML5** - Semantic structure with accessibility features
+- **CSS3** - Custom properties, Grid, Flexbox, animations
+- **JavaScript** - ES6+ with Intersection Observer, Fetch API
+- **Google Fonts** - Inter typeface
+
+## 🚀 Run Locally
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/Mlk-KFUPM/assignment-4.git
    cd assignment-4
    ```
-2. Open `index.html` in any modern browser.
 
-## 🤖 AI Usage (summary)
-- Tool: ChatGPT (Codex CLI) for pairing on sorting/state features, quotes API, and docs.
-- See full log in `docs/ai-usage-report.md` (prompts, outputs, edits, lessons).
+2. Install dependencies and start dev server:
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-## 🌐 Live Demo (optional)
-- If deployed, add link here (e.g., GitHub Pages/Netlify/Vercel).
+3. Or simply open `index.html` in your browser.
+
+## 📦 Deployment
+
+### GitHub Pages
+1. Push to your GitHub repository
+2. Go to Settings → Pages
+3. Select "Deploy from a branch" → main → / (root)
+4. Your site will be live at `https://[username].github.io/assignment-4/`
+
+### Other Options
+- **Vercel**: `npx vercel`
+- **Netlify**: Drag and drop the folder
+
+## 🎨 Customization
+
+### Colors
+Edit CSS variables in `css/styles.css`:
+```css
+:root {
+  --brand: #4f8cff;    /* Primary blue */
+  --accent: #2dd4bf;   /* Teal accent */
+  --accent-pink: #f471b5; /* Pink gradient */
+}
+```
+
+### Projects
+Update the `projectsData` array in `js/script.js` to add your own projects.
+
+## 📱 Responsive Breakpoints
+
+- **900px** - 2-column to 1-column layouts
+- **600px** - Mobile navigation, condensed sections
+
+## 🤖 AI Usage
+
+See [docs/ai-usage-report.md](docs/ai-usage-report.md) for details on AI assistance during development.
 
 ## 📜 License
+
 MIT
