@@ -1,0 +1,12 @@
+{
+  "name": "assignment-4",
+  "version": "1.0.0",
+  "description": "Portfolio site with semantic HTML, modern CSS, and JavaScript",
+  "scripts": {
+    "dev": "npx live-server --port=3000",
+    "start": "npx live-server --port=3000"
+  },
+  "keywords": ["portfolio", "html", "css", "javascript"],
+  "author": "Abdulmalik Alsafadi",
+  "license": "MIT"
+}

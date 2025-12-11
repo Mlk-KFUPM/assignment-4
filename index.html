@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abdulmalik Alsafadi | Portfolio</title>
+    <meta
+      name="description"
+      content="Responsive personal portfolio. SWE assignment-2."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="assets/images/placeholder.png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">Abdulmalik Alsafadi</a>
+      <nav class="nav" aria-label="Primary">
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="navList"
+        >
+          Menu
+        </button>
+        <ul id="navList">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button
+              id="themeToggle"
+              class="btn btn-ghost"
+              type="button"
+              aria-label="Toggle theme"
+            >
+              🌗
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="top">
+      <section id="hero" class="hero">
+        <h1 id="greeting">Hello.</h1>
+        <div class="state-panel">
+          <label class="inline-field">
+            Remember my name
+            <input
+              id="nameInput"
+              type="text"
+              name="visitorName"
+              placeholder="Type your name"
+              minlength="2"
+            />
+          </label>
+          <button id="saveName" class="btn" type="button">Save name</button>
+          <p id="nameStatus" class="small muted" aria-live="polite"></p>
+        </div>
+        <div class="state-panel">
+          <button id="loginToggle" class="btn" type="button">Log In</button>
+          <span id="loginStatus" class="small muted" aria-live="polite"
+            >Logged out</span
+          >
+        </div>
+        <div class="state-panel">
+          <button id="projectToggle" class="btn" type="button">
+            Hide Projects
+          </button>
+          <span class="small muted">Toggle project section visibility.</span>
+        </div>
+      </section>
+      <section id="about" class="section">
+        <h2>About Me</h2>
+        <div class="about-grid">
+          <img
+            class="avatar"
+            src="assets/images/placeholder.png"
+            alt="Profile photo"
+            loading="lazy"
+            width="120"
+            height="120"
+          />
+          <p>
+            Junior Software Engineering student at KFUPM focused on practical
+            web development. I like turning requirements into small, reliable
+            products with clean UI and simple code. Current interests: front-end
+            systems, Spring Boot back ends, and automation.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+
+        <div class="project-bar">
+          <div id="project-filters" class="filter-chips">
+            <button class="chip active" data-filter="All" type="button">
+              All
+            </button>
+            <button class="chip" data-filter="Flutter" type="button">
+              Flutter
+            </button>
+            <button class="chip" data-filter="Spring Boot" type="button">
+              Spring Boot
+            </button>
+            <button class="chip" data-filter="Java" type="button">Java</button>
+            <button class="chip" data-filter="React" type="button">React</button>
+          </div>
+          <label class="sort-control">
+            Sort
+            <select id="projectSort">
+              <option value="Newest" selected>Newest</option>
+              <option value="Oldest">Oldest</option>
+              <option value="TitleAZ">Title A–Z</option>
+              <option value="TitleZA">Title Z–A</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="project-cards" class="cards"></div>
+      </section>
+
+      <section id="experience" class="section">
+        <h2>Pick Your Path</h2>
+        <p class="muted small">
+          Choose a level to see the guidance that best fits you.
+        </p>
+        <div class="filter-chips">
+          <button class="chip active" data-level="Beginner" type="button">
+            Beginner
+          </button>
+          <button class="chip" data-level="Intermediate" type="button">
+            Intermediate
+          </button>
+          <button class="chip" data-level="Advanced" type="button">
+            Advanced
+          </button>
+        </div>
+        <article class="card" id="levelCard">
+          <h3 id="levelTitle">Beginner focus</h3>
+          <p id="levelBody" class="muted">
+            Start with React basics and Java fundamentals. Build small UI
+            components, practice Git flows, and deploy a simple static site.
+          </p>
+        </article>
+      </section>
+
+      <section id="quotes" class="section">
+        <h2>Inspirational Quote</h2>
+        <article class="card quote-card" aria-live="polite">
+          <p id="quoteText" class="quote-text">Fetching an inspiring thought...</p>
+          <p id="quoteAuthor" class="quote-author muted"></p>
+          <p id="quoteError" class="error-message" role="status" aria-live="polite"></p>
+          <div class="quote-actions">
+            <button id="quoteRefresh" class="btn" type="button">New Quote</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="skills" class="section">
+        <h2>Skills</h2>
+        <ul class="chips">
+          <li>Problem Solving</li>
+          <li>Critical Thinking</li>
+          <li>Java</li>
+          <li>Spring Boot</li>
+          <li>REST APIs</li>
+          <li>SQL</li>
+          <li>Database Systems</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>React.js</li>
+          <li>Flutter</li>
+          <li>Dart</li>
+          <li>User Authentication</li>
+          <li>Application Programming Interfaces (API)</li>
+          <li>Back-End Web Development</li>
+          <li>Software Testing</li>
+          <li>Git & GitHub</li>
+          <li>Web Development</li>
+        </ul>
+      </section>
+      <section id="certs" class="section">
+        <h2>Certifications</h2>
+        <div class="certs">
+          <article class="card cert">
+            <div class="cert-head">
+              <div>
+                <h3>Flutter & Dart – The Complete Guide</h3>
+                <p class="issuer">Udemy • Issued Jun 2025</p>
+              </div>
+            </div>
+            <p class="meta">
+              Skills: Problem Solving, User Authentication, Flutter
+            </p>
+            <p>
+              <a
+                class="link"
+                href="assets/certifications/flutter-dart-udemy.pdf"
+                target="_blank"
+                >View certificate (PDF)</a
+              >
+            </p>
+          </article>
+          <article class="card cert">
+            <div class="cert-head">
+              <div>
+                <h3>React 18 for Beginners</h3>
+                <p class="issuer">Code With Mosh • Issued Jun 2025</p>
+              </div>
+            </div>
+            <p class="meta">Skills: JavaScript, Problem Solving, React.js</p>
+            <p>
+              <a
+                class="link"
+                href="assets/certifications/react18-mosh.pdf"
+                target="_blank"
+                >View certificate (PDF)</a
+              >
+            </p>
+          </article>
+          <article class="card cert">
+            <div class="cert-head">
+              <div>
+                <h3>Nanodegree: Java Web Developer</h3>
+                <p class="issuer">Udacity • Issued Apr 2025</p>
+              </div>
+            </div>
+            <p class="meta">
+              Skills: SQL, Spring Boot, Testing, APIs, Back-End Web Development,
+              REST, Java
+            </p>
+            <p>
+              <a
+                class="link"
+                href="assets/certifications/java-webdev-udacity.pdf"
+                target="_blank"
+                >View certificate</a
+              >
+            </p>
+          </article>
+        </div>
+      </section>
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <form id="contactForm" class="form" novalidate>
+          <label>
+            Name
+            <input
+              name="name"
+              type="text"
+              required
+              minlength="2"
+              placeholder="Your name"
+            />
+            <span class="error-message" aria-live="polite"></span>
+          </label>
+          <label>
+            Email
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="you@domain.tld"
+            />
+            <span class="error-message" aria-live="polite"></span>
+          </label>
+          <label>
+            Message
+            <textarea
+              name="message"
+              rows="5"
+              required
+              minlength="10"
+              placeholder="How can I help?"
+            ></textarea>
+            <span class="error-message" aria-live="polite"></span>
+          </label>
+          <button class="btn" type="submit">Send</button>
+          <p id="formNote" class="note" role="status" hidden>Message sent.</p>
+        </form>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <p>
+        &copy; <span id="year"></span> Abdulmalik Alsafadi •
+        <a href="#top" class="link">Back to top</a>
+      </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
