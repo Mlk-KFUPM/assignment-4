@@ -429,6 +429,15 @@ main {
   font-size: 0.875rem;
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
 /* --- Filter & Sort Controls --- */
 .project-bar {
   display: flex;

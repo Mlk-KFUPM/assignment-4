@@ -338,7 +338,8 @@
       tags: ["React", "Node.js", "MongoDB", "SWE-363"],
       year: 2025,
       isPrivate: false,
-      link: "https://tellerecipes-client.vercel.app/",
+      link: "https://github.com/Mlk-KFUPM/TellerRecipes",
+      liveUrl: "https://tellerecipes-client.vercel.app/",
     },
     {
       title: "Portfolio Website",
@@ -348,7 +349,8 @@
       tags: ["HTML", "CSS", "JavaScript", "SWE-363"],
       year: 2025,
       isPrivate: false,
-      link: "https://me-flame-seven.vercel.app/",
+      link: "https://github.com/Mlk-KFUPM/assignment-4",
+      liveUrl: "https://me-flame-seven.vercel.app/",
     },
     {
       title: "Algorithmic Trading Bot",
@@ -421,11 +423,20 @@
 
     const html = sortedProjects
       .map((project, index) => {
-        const linkHtml = project.isPrivate
-          ? `<p class="lock">🔒 Private project</p>`
-          : `<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="link" aria-label="View ${project.title} on GitHub">
-              View on GitHub →
-            </a>`;
+        let linkHtml = '';
+        
+        if (project.isPrivate) {
+          linkHtml = `<p class="lock">🔒 Private project</p>`;
+        } else {
+          const links = [];
+          if (project.liveUrl) {
+            links.push(`<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-small" aria-label="View ${project.title} live website">View Website</a>`);
+          }
+          if (project.link) {
+            links.push(`<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="link" aria-label="View ${project.title} on GitHub">GitHub →</a>`);
+          }
+          linkHtml = `<div class="project-links">${links.join('')}</div>`;
+        }
 
         return `
           <article class="card project-card" style="animation-delay: ${index * 0.1}s">
