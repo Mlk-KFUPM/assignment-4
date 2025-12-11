@@ -2,67 +2,170 @@
 
 ## Tech Stack
 
-- **HTML5**: Semantic structure for content
-- **CSS3**: Variables, Flexbox, Grid, media queries, animations
-- **JavaScript (ES6+)**: DOM manipulation, Array methods (`.map()`, `.filter()`)
+- **HTML5**: Semantic structure with accessibility features (ARIA attributes, landmarks)
+- **CSS3**: Custom properties, Flexbox, Grid, animations, media queries, print styles
+- **JavaScript (ES6+)**: DOM manipulation, Intersection Observer API, Fetch API, localStorage
+- **Google Fonts**: Inter typeface for premium typography
+
+---
+
+## Architecture Overview
+
+```
+assignment-4/
+├── index.html          # Main HTML with semantic structure
+├── css/
+│   └── styles.css      # All styles with CSS variables for theming
+├── js/
+│   └── script.js       # IIFE-wrapped JavaScript modules
+├── assets/
+│   ├── images/         # Project screenshots and avatar
+│   └── certifications/ # PDF certificates
+└── docs/
+    ├── technical-documentation.md
+    └── ai-usage-report.md
+```
+
+---
 
 ## Components & Features
 
-### Header & Navigation
+### 1. Scroll Progress Indicator
+- **Element**: `#scrollProgress` - Fixed bar at top of viewport
+- **Logic**: `initScrollProgress()` calculates scroll percentage and updates bar width
+- **Performance**: Uses passive scroll listener for smooth updates
 
-- Sticky header with brand name
-- Mobile nav toggle (accessible `aria-expanded` attributes)
-- Theme toggle persisted in `localStorage`
+### 2. Hero Section
+- **Typing Effect**: `initTypingEffect()` animates greeting character by character
+- **Gradient Text**: CSS `background-clip: text` for colorful "Software Engineer" text
+- **Social Links**: SVG icons for GitHub/LinkedIn with hover effects
+- **Collapsible Settings**: `<details>` element contains state controls (name, login, visibility)
 
-### Hero Section
+### 3. Projects Section (Dynamic & Interactive)
 
-- Time-based greeting (morning/afternoon/evening)
+**Data Source**: Local `projectsData` array in `js/script.js` with structure:
+```javascript
+{
+  title: string,
+  imageUrl: string,
+  description: string,
+  tags: string[],
+  year: number,
+  isPrivate: boolean,
+  link: string | null
+}
+```
 
-### Projects Section (Dynamic & Interactive)
+**Filtering (`initProjectFilters`)**:
+1. Event delegation on `#project-filters` container
+2. Updates `.active` class on clicked chip
+3. Calls `loadProjectsFromData(filter, sort)`
 
-- **Data Source**: A local JavaScript array named `projectsData` in `js/script.js`. This stores the title, description, image, link, and an array of `tags` (e.g., "Flutter", "Spring Boot") for each project.
-- **Interactive Filters (`js/initProjectFilters`)**:
-  1.  Click-event listeners are added to the filter buttons in the `#project-filters` container.
-  2.  When a button is clicked, its `data-filter` value (e.g., "Flutter") is retrieved.
-  3.  The `active` class is moved to the clicked button.
-  4.  The `loadProjectsFromData` function is called with the new filter value.
-- **Dynamic Content (`js/loadProjectsFromData`)**:
-  1.  This function receives a `filter` (defaulting to "All").
-  2.  It filters the `projectsData` array. If the filter is "All", it returns all projects. Otherwise, it returns only projects where the `tags` array includes the filter.
-  3.  It generates the HTML for the filtered projects using `.map()`.
-- **Empty State**: If the `filteredProjects` array is empty, it displays a "No projects found..." message.
+**Sorting (`initProjectSort`)**:
+- Options: Newest, Oldest, Title A–Z, Title Z–A
+- `sortProjects()` returns sorted array without mutating original
 
-### Skills & Certifications
+**Rendering (`loadProjectsFromData`)**:
+1. Filters by tag if not "All"
+2. Sorts by selected criteria
+3. Generates HTML with `.map()` and staggered animation delays
+4. Handles empty state gracefully
 
-- Static sections with responsive card and chip layouts.
+### 4. Skills Section
+- **Layout**: 2-column CSS Grid with 4 skill categories
+- **Progress Bars**: CSS `--progress` custom property drives width
+- **Animation**: `@keyframes skillLoad` animates from `scaleX(0)` to `scaleX(1)`
 
-### Contact Section (Enhanced Validation)
+### 5. Inspirational Quotes
+- **API**: `https://dummyjson.com/quotes/random`
+- **Fallback**: Local array of 5 quotes if API fails
+- **States**: Loading, success, error (with graceful messaging)
+- **Refresh**: Button to fetch new quote
 
-- **Logic (`js/initContactForm`)**:
-  1.  The default `submit` event is prevented.
-  2.  If a field is invalid, a specific, inline error message is shown in the corresponding `.error-message` span.
-  3.  An `input` listener clears errors as the user types.
-- **Feedback**: A "Message sent" note is shown on successful submission.
+### 6. Contact Form Validation
+- **Validation**: Custom JS validation with specific error messages
+- **Fields**: Name (min 2 chars), Email (valid format), Message (min 10 chars)
+- **UX**: Errors clear as user types, focus moves to first invalid field
+- **Feedback**: Success note shown for 4 seconds
 
-### Footer
+### 7. State Persistence (localStorage)
+| Key | Purpose |
+|-----|---------|
+| `theme` | "light" or "dark" theme preference |
+| `visitorName` | Remembered visitor name for greeting |
+| `isLoggedIn` | Simulated login state (demo) |
+| `projectsHidden` | Whether projects section is hidden |
 
-- Dynamic year rendering
-- Back-to-top link
+---
 
-## Responsiveness
+## CSS Architecture
 
-- **900px** → About, Projects, and Certifications adjust to 2 columns
-- **600px** → Nav collapses into a toggle menu, cards stack to 1 column
+### Theme System
+```css
+:root {
+  --bg: #0a0d12;           /* Background */
+  --panel: rgba(22,30,44,0.8); /* Card backgrounds */
+  --text: #e6eaf0;         /* Primary text */
+  --muted: #8b95a5;        /* Secondary text */
+  --brand: #4f8cff;        /* Primary accent (blue) */
+  --accent: #2dd4bf;       /* Secondary accent (teal) */
+}
 
-## Accessibility
+:root.light { /* Light theme overrides */ }
+```
 
-- Semantic landmarks: `<header>`, `<main>`, `<section>`, `<footer>`
-- Form labels bound to inputs.
-- `aria-live="polite"` on inline form error messages.
-- `aria-expanded` on mobile navigation toggle.
-- `aria-label` on project links for better context.
+### Key CSS Features
+- **Glassmorphism**: `backdrop-filter: blur()` on panels
+- **Gradients**: `linear-gradient()` for buttons, text, progress bars
+- **Animations**: `fadeIn`, `skillLoad`, scroll reveal transitions
+- **Print Styles**: Hides interactive elements for clean printing
+
+---
+
+## Responsive Breakpoints
+
+| Breakpoint | Changes |
+|------------|---------|
+| **900px** | 2-column → 1-column layouts, project bar stacks vertically |
+| **600px** | Mobile nav toggle, condensed hero, smaller headings |
+
+---
+
+## Accessibility Features
+
+- **Semantic HTML**: `<header>`, `<main>`, `<section>`, `<article>`, `<footer>`
+- **ARIA Attributes**:
+  - `aria-label` on icon links and buttons
+  - `aria-live="polite"` on dynamic content (quotes, form errors)
+  - `aria-expanded` on mobile nav toggle
+  - `aria-invalid` on form fields with errors
+- **Keyboard Navigation**: All interactive elements focusable
+- **Color Contrast**: Tested for WCAG AA compliance
+
+---
+
+## Performance Optimizations
+
+- **Lazy Loading**: `loading="lazy"` on project images
+- **Font Loading**: `font-display: swap` via Google Fonts
+- **Passive Listeners**: Scroll events use `{ passive: true }`
+- **Deferred JS**: Script at end of body
+- **CSS Variables**: Single source of truth for theming
+
+---
+
+## Browser Support
+
+- Chrome 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
+
+---
 
 ## Known Limitations
 
-- No backend integration (contact form is client-only).
-- Private projects not linked to source code.
+1. **No Backend**: Contact form is client-side only (no actual email sending)
+2. **Image Size**: Project images are large (~1.3MB each) - should be compressed for production
+3. **No PWA**: Could add service worker for offline support
+4. **Static Hosting**: No server-side rendering
