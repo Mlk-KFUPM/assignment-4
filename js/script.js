@@ -331,6 +331,26 @@
       link: null,
     },
     {
+      title: "TellerRecipes",
+      imageUrl: "assets/images/tellerecipes.png",
+      description:
+        "Full-stack recipe sharing platform with role-based access (User, Chef, Admin). Vite + React frontend with Node.js/MongoDB backend. Team project for SWE-363.",
+      tags: ["React", "Node.js", "MongoDB", "SWE-363"],
+      year: 2025,
+      isPrivate: false,
+      link: "https://tellerecipes-client.vercel.app/",
+    },
+    {
+      title: "Portfolio Website",
+      imageUrl: "assets/images/portfolio.png",
+      description:
+        "Modern responsive portfolio with dynamic projects, theme toggle, scroll animations, and API integration. Built as assignment series for SWE-363 Web Engineering course.",
+      tags: ["HTML", "CSS", "JavaScript", "SWE-363"],
+      year: 2025,
+      isPrivate: false,
+      link: "https://me-flame-seven.vercel.app/",
+    },
+    {
       title: "Algorithmic Trading Bot",
       imageUrl: "assets/images/trading-bot.png",
       description:
@@ -354,8 +374,8 @@
       title: "Tournament Management",
       imageUrl: "assets/images/tournament-management.png",
       description:
-        "Database-driven tournament management system. PostgreSQL with Spring Boot API and Flutter mobile app.",
-      tags: ["Flutter", "Spring Boot", "ICS-321"],
+        "Database-driven tournament management system. PostgreSQL with Spring Boot API and React frontend.",
+      tags: ["React", "Spring Boot", "ICS-321"],
       year: 2022,
       isPrivate: false,
       link: "https://github.com/Mlk-KFUPM/tournament",
