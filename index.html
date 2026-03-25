@@ -1,394 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Abdulmalik Alsafadi | Software Engineer</title>
-    <meta
-      name="description"
-      content="Software Engineering student at KFUPM specializing in web development, Spring Boot, Flutter, and React. View my projects, skills, and certifications."
-    />
-    <meta name="author" content="Abdulmalik Alsafadi" />
-    <meta name="theme-color" content="#0b0e14" />
-    
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Abdulmalik Alsafadi | Software Engineer" />
-    <meta property="og:description" content="Software Engineering student at KFUPM specializing in web development, Spring Boot, Flutter, and React." />
-    <meta property="og:image" content="assets/images/placeholder.png" />
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Abdulmalik Alsafadi | Software Engineer" />
-    <meta name="twitter:description" content="Software Engineering student at KFUPM specializing in web development." />
-    
-    <!-- Google Font: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="icon" href="assets/images/placeholder.png" />
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#top">Abdulmalik Alsafadi</a>
-      <nav class="nav" aria-label="Primary">
-        <button
-          id="navToggle"
-          class="nav-toggle"
-          aria-expanded="false"
-          aria-controls="navList"
-        >
-          Menu
-        </button>
-        <ul id="navList">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#certs">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li>
-            <button
-              id="themeToggle"
-              class="btn btn-ghost"
-              type="button"
-              aria-label="Toggle theme"
-            >
-              🌗
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <main id="top">
-      <!-- Scroll Progress Indicator -->
-      <div id="scrollProgress" class="scroll-progress"></div>
-      
-      <section id="hero" class="hero">
-        <div class="hero-content">
-          <p class="hero-intro">👋 Hi, I'm</p>
-          <h1 class="hero-name">Abdulmalik Alsafadi</h1>
-          <p id="greeting" class="hero-tagline"></p>
-          <p class="hero-subtitle">
-            <span class="gradient-text">Software Engineer</span> · KFUPM Student
-          </p>
-          <p class="hero-description">
-            Building clean, reliable products with modern web technologies.<br />
-            Focused on Spring Boot, Flutter, and React.
-          </p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn">View Projects</a>
-            <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-          </div>
-          <div class="social-links">
-            <a href="https://github.com/Mlk-KFUPM" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/abdulmalik-alsafadi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-link">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Collapsible Settings Panel -->
-        <details class="settings-panel">
-          <summary class="settings-toggle">
-            <span>⚙️ Preferences</span>
-          </summary>
-          <div class="settings-content">
-            <div class="state-panel">
-              <label class="inline-field">
-                Remember my name
-                <input
-                  id="nameInput"
-                  type="text"
-                  name="visitorName"
-                  placeholder="Type your name"
-                  minlength="2"
-                />
-              </label>
-              <button id="saveName" class="btn btn-small" type="button">Save</button>
-              <p id="nameStatus" class="small muted" aria-live="polite"></p>
-            </div>
-            <div class="state-panel">
-              <button id="loginToggle" class="btn btn-small btn-ghost" type="button">Log In</button>
-              <span id="loginStatus" class="small muted" aria-live="polite">Logged out</span>
-            </div>
-            <div class="state-panel">
-              <button id="projectToggle" class="btn btn-small btn-ghost" type="button">
-                Hide Projects
-              </button>
-              <span class="small muted">Toggle visibility</span>
-            </div>
-          </div>
-        </details>
-      </section>
-      <section id="about" class="section">
-        <h2>About Me</h2>
-        <div class="about-grid">
-          <img
-            class="avatar"
-            src="assets/images/placeholder.png"
-            alt="Profile photo"
-            loading="lazy"
-            width="120"
-            height="120"
-          />
-          <p>
-            Junior Software Engineering student at KFUPM focused on practical
-            web development. I like turning requirements into small, reliable
-            products with clean UI and simple code. Current interests: front-end
-            systems, Spring Boot back ends, and automation.
-          </p>
-        </div>
-      </section>
 
-      <section id="projects" class="section">
-        <h2>Projects</h2>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abdulmalik Alsafadi | Software Engineer</title>
+  <link rel="icon" type="image/png" href="assets/images/placeholder.png" />
+  <meta name="description"
+    content="Software Engineering student at KFUPM specializing in web development, Spring Boot, Flutter, and React. View my projects, skills, and certifications." />
+  <meta name="author" content="Abdulmalik Alsafadi" />
+  <meta name="theme-color" content="#0b0e14" />
 
-        <div class="project-bar">
-          <div id="project-filters" class="filter-chips">
-            <button class="chip active" data-filter="All" type="button">
-              All
-            </button>
-            <button class="chip" data-filter="React" type="button">React</button>
-            <button class="chip" data-filter="Spring Boot" type="button">
-              Spring Boot
-            </button>
-            <button class="chip" data-filter="Flutter" type="button">
-              Flutter
-            </button>
-            <button class="chip" data-filter="Node.js" type="button">Node.js</button>
-            <button class="chip" data-filter="SWE-363" type="button">SWE-363</button>
-          </div>
-          <label class="sort-control">
-            Sort
-            <select id="projectSort">
-              <option value="Newest" selected>Newest</option>
-              <option value="Oldest">Oldest</option>
-              <option value="TitleAZ">Title A–Z</option>
-              <option value="TitleZA">Title Z–A</option>
-            </select>
-          </label>
-        </div>
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Abdulmalik Alsafadi | Software Engineer" />
+  <meta property="og:description"
+    content="Software Engineering student at KFUPM specializing in web development, Spring Boot, Flutter, and React." />
+  <meta property="og:image" content="assets/images/profile.png" />
 
-        <div id="project-cards" class="cards"></div>
-      </section>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Abdulmalik Alsafadi | Software Engineer" />
+  <meta name="twitter:description" content="Software Engineering student at KFUPM specializing in web development." />
 
-      <section id="experience" class="section">
-        <h2>Pick Your Path</h2>
-        <p class="muted small">
-          Choose a level to see the guidance that best fits you.
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Abdulmalik Alsafadi</a>
+    <nav class="nav" aria-label="Primary">
+      <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="navList">
+        Menu
+      </button>
+      <ul id="navList">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certs">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button id="themeToggle" class="btn btn-ghost" type="button" aria-label="Toggle theme">
+            🌗
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main id="top">
+    <!-- Scroll Progress Indicator -->
+    <div id="scrollProgress" class="scroll-progress"></div>
+
+    <section id="hero" class="hero">
+      <div class="hero-content">
+        <p class="hero-intro">👋 Hi, I'm</p>
+        <h1 class="hero-name">Abdulmalik Alsafadi</h1>
+        <p id="greeting" class="hero-tagline"></p>
+        <p class="hero-subtitle">
+          <span class="gradient-text">Software Engineer</span> · KFUPM Student
         </p>
-        <div class="filter-chips">
-          <button class="chip active" data-level="Beginner" type="button">
-            Beginner
-          </button>
-          <button class="chip" data-level="Intermediate" type="button">
-            Intermediate
-          </button>
-          <button class="chip" data-level="Advanced" type="button">
-            Advanced
-          </button>
+        <p class="hero-description">
+          Building clean, reliable products with modern web technologies.<br />
+          Focused on Spring Boot, Flutter, and React.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">View Projects</a>
+          <a href="assets/CV.pdf" target="_blank" class="btn btn-ghost">📄 Download CV</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
         </div>
-        <article class="card" id="levelCard">
-          <h3 id="levelTitle">Beginner focus</h3>
-          <p id="levelBody" class="muted">
-            Start with React basics and Java fundamentals. Build small UI
-            components, practice Git flows, and deploy a simple static site.
+        <div class="social-links">
+          <a href="https://github.com/Mlk-KFUPM" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"
+            class="social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/abdulmalik-alsafadi" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn Profile" class="social-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <div class="about-grid">
+        <img class="avatar" src="assets/images/placeholder.png" alt="Abdulmalik Alsafadi profile photo" loading="lazy"
+          width="120" height="120" />
+        <div>
+          <p>
+            Software Engineering student at KFUPM (GPA 3.27) with hands-on
+            experience building full-stack products from concept to deployment.
+            I specialize in Spring Boot backends, React frontends, and Flutter
+            mobile apps — with a strong focus on clean architecture and
+            real-world impact.
+          </p>
+          <p>
+            Currently serving as CTO at Hakeem (a meal-planning startup) and
+            leading engineering for FORGE KFUPM's conference platform. I also
+            develop algorithmic trading systems managing real-money assets.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+
+      <div class="project-bar">
+        <div id="project-filters" class="filter-chips">
+          <button class="chip active" data-filter="All" type="button">
+            All
+          </button>
+          <button class="chip" data-filter="React" type="button">React</button>
+          <button class="chip" data-filter="Spring Boot" type="button">
+            Spring Boot
+          </button>
+          <button class="chip" data-filter="Flutter" type="button">
+            Flutter
+          </button>
+          <button class="chip" data-filter="Node.js" type="button">Node.js</button>
+        </div>
+        <label class="sort-control">
+          Sort
+          <select id="projectSort">
+            <option value="Newest" selected>Newest</option>
+            <option value="Oldest">Oldest</option>
+            <option value="TitleAZ">Title A–Z</option>
+            <option value="TitleZA">Title Z–A</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="project-cards" class="cards"></div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience & Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Tech Leader — FORGE KFUPM</h3>
+              <span class="timeline-date">Feb 2026 – Present</span>
+            </div>
+            <p class="muted">Engineered a bilingual full-stack conference platform using React, TypeScript, and Node.js,
+              with a role-based admin portal.</p>
+            <div class="timeline-tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Node.js</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>CTO — Hakeem (Startup)</h3>
+              <span class="timeline-date">2025 – Present</span>
+            </div>
+            <p class="muted">Architected and deployed a multi-platform ecosystem — Flutter mobile app, React admin
+              portal, and Spring Boot backend on AWS — for a production meal-planning service.</p>
+            <div class="timeline-tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Spring Boot</span>
+              <span class="tag">AWS</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>Lead Developer — Algorithmic Trading Bot</h3>
+              <span class="timeline-date">Jan 2025 – Present</span>
+            </div>
+            <p class="muted">Engineered an end-to-end autonomous trading system using Spring Boot, React, and Node.js to
+              manage real-money assets, featuring a custom backtesting engine and a live PostgreSQL-driven performance
+              dashboard.</p>
+            <div class="timeline-tags">
+              <span class="tag">Spring Boot</span>
+              <span class="tag">React</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item timeline-education">
+          <div class="timeline-marker edu"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>BSc Software Engineering — KFUPM</h3>
+              <span class="timeline-date">2022 – 2027 (Expected)</span>
+            </div>
+            <p class="muted">King Fahd University of Petroleum and Minerals · GPA: 3.27 / 4.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3 class="skill-category-title">🔧 Backend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">Microservices</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category-title">🎨 Frontend & Mobile</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript (ES6+)</span>
+            <span class="skill-tag">HTML5 / CSS3</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">Dart</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category-title">🗄️ Databases & Storage</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category-title">☁️ Cloud & DevOps</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">Neon</span>
+            <span class="skill-tag">Digital Ocean</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">App Store Connect</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category-title">🧠 Specialized</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">System Design</span>
+            <span class="skill-tag">Design Patterns</span>
+            <span class="skill-tag">Algorithmic Trading</span>
+            <span class="skill-tag">Software Testing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="certs" class="section">
+      <h2>Certifications</h2>
+      <div class="certs">
+        <article class="card cert">
+          <div class="cert-head">
+            <div>
+              <h3>Flutter & Dart – The Complete Guide</h3>
+              <p class="issuer">Udemy • Issued Jun 2025</p>
+            </div>
+          </div>
+          <p class="meta">
+            Skills: Problem Solving, User Authentication, Flutter
+          </p>
+          <p>
+            <a class="link" href="assets/certifications/flutter-dart-udemy.pdf" target="_blank">View certificate
+              (PDF)</a>
           </p>
         </article>
-      </section>
-
-      <section id="quotes" class="section">
-        <h2>Inspirational Quote</h2>
-        <article class="card quote-card" aria-live="polite">
-          <p id="quoteText" class="quote-text">Fetching an inspiring thought...</p>
-          <p id="quoteAuthor" class="quote-author muted"></p>
-          <p id="quoteError" class="error-message" role="status" aria-live="polite"></p>
-          <div class="quote-actions">
-            <button id="quoteRefresh" class="btn" type="button">New Quote</button>
+        <article class="card cert">
+          <div class="cert-head">
+            <div>
+              <h3>React 18 for Beginners</h3>
+              <p class="issuer">Code With Mosh • Issued Jun 2025</p>
+            </div>
           </div>
+          <p class="meta">Skills: JavaScript, Problem Solving, React.js</p>
+          <p>
+            <a class="link" href="assets/certifications/react18-mosh.pdf" target="_blank">View certificate (PDF)</a>
+          </p>
         </article>
-      </section>
-
-      <section id="skills" class="section">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3 class="skill-category-title">🔧 Backend</h3>
-            <div class="skill-item">
-              <span class="skill-name">Java</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Spring Boot</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">REST APIs</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">SQL / Databases</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
+        <article class="card cert">
+          <div class="cert-head">
+            <div>
+              <h3>Nanodegree: Java Web Developer</h3>
+              <p class="issuer">Udacity • Issued Apr 2025</p>
             </div>
           </div>
-          
-          <div class="skill-category">
-            <h3 class="skill-category-title">🎨 Frontend</h3>
-            <div class="skill-item">
-              <span class="skill-name">HTML & CSS</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">JavaScript</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">React.js</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h3 class="skill-category-title">📱 Mobile</h3>
-            <div class="skill-item">
-              <span class="skill-name">Flutter</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 82%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Dart</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div>
-            </div>
-          </div>
-          
-          <div class="skill-category">
-            <h3 class="skill-category-title">🛠️ Tools & Practices</h3>
-            <div class="skill-item">
-              <span class="skill-name">Git & GitHub</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Software Testing</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">Problem Solving</span>
-              <div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="certs" class="section">
-        <h2>Certifications</h2>
-        <div class="certs">
-          <article class="card cert">
-            <div class="cert-head">
-              <div>
-                <h3>Flutter & Dart – The Complete Guide</h3>
-                <p class="issuer">Udemy • Issued Jun 2025</p>
-              </div>
-            </div>
-            <p class="meta">
-              Skills: Problem Solving, User Authentication, Flutter
-            </p>
-            <p>
-              <a
-                class="link"
-                href="assets/certifications/flutter-dart-udemy.pdf"
-                target="_blank"
-                >View certificate (PDF)</a
-              >
-            </p>
-          </article>
-          <article class="card cert">
-            <div class="cert-head">
-              <div>
-                <h3>React 18 for Beginners</h3>
-                <p class="issuer">Code With Mosh • Issued Jun 2025</p>
-              </div>
-            </div>
-            <p class="meta">Skills: JavaScript, Problem Solving, React.js</p>
-            <p>
-              <a
-                class="link"
-                href="assets/certifications/react18-mosh.pdf"
-                target="_blank"
-                >View certificate (PDF)</a
-              >
-            </p>
-          </article>
-          <article class="card cert">
-            <div class="cert-head">
-              <div>
-                <h3>Nanodegree: Java Web Developer</h3>
-                <p class="issuer">Udacity • Issued Apr 2025</p>
-              </div>
-            </div>
-            <p class="meta">
-              Skills: SQL, Spring Boot, Testing, APIs, Back-End Web Development,
-              REST, Java
-            </p>
-            <p>
-              <a
-                class="link"
-                href="assets/certifications/java-webdev-udacity.pdf"
-                target="_blank"
-                >View certificate</a
-              >
-            </p>
-          </article>
-        </div>
-      </section>
-      <section id="contact" class="section">
-        <h2>Contact</h2>
-        <form id="contactForm" class="form" novalidate>
-          <label>
-            Name
-            <input
-              name="name"
-              type="text"
-              required
-              minlength="2"
-              placeholder="Your name"
-            />
-            <span class="error-message" aria-live="polite"></span>
-          </label>
-          <label>
-            Email
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="you@domain.tld"
-            />
-            <span class="error-message" aria-live="polite"></span>
-          </label>
-          <label>
-            Message
-            <textarea
-              name="message"
-              rows="5"
-              required
-              minlength="10"
-              placeholder="How can I help?"
-            ></textarea>
-            <span class="error-message" aria-live="polite"></span>
-          </label>
-          <button class="btn" type="submit">Send</button>
-          <p id="formNote" class="note" role="status" hidden>Message sent.</p>
-        </form>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <p>
-        &copy; <span id="year"></span> Abdulmalik Alsafadi •
-        <a href="#top" class="link">Back to top</a>
+          <p class="meta">
+            Skills: SQL, Spring Boot, Testing, APIs, Back-End Web Development,
+            REST, Java
+          </p>
+          <p>
+            <a class="link" href="assets/certifications/java-webdev-udacity.pdf" target="_blank">View certificate</a>
+          </p>
+        </article>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p class="contact-intro">
+        Have a project in mind or want to collaborate? Reach me directly at
+        <a href="mailto:abdalmalekfs@gmail.com" class="link">abdalmalekfs@gmail.com</a>
+        or use the form below.
       </p>
-    </footer>
+      <form id="contactForm" class="form" novalidate>
+        <label>
+          Name
+          <input name="name" type="text" required minlength="2" placeholder="Your name" />
+          <span class="error-message" aria-live="polite"></span>
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" required placeholder="you@domain.tld" />
+          <span class="error-message" aria-live="polite"></span>
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="5" required minlength="10" placeholder="How can I help?"></textarea>
+          <span class="error-message" aria-live="polite"></span>
+        </label>
+        <button class="btn" type="submit">Send Message</button>
+        <p id="formNote" class="note" role="status" hidden></p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://github.com/Mlk-KFUPM" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+          class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com/in/abdulmalik-alsafadi" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+        </a>
+        <a href="mailto:abdalmalekfs@gmail.com" aria-label="Email" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+          </svg>
+        </a>
+      </div>
+      <p>
+        &copy; <span id="year"></span> Abdulmalik Alsafadi
+      </p>
+    </div>
+  </footer>
 
-    <script src="js/script.js"></script>
-  </body>
+  <!-- Floating Back to Top Button -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top" type="button">
+    ↑
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+
 </html>

@@ -16,13 +16,12 @@
     if (!greetingEl) return;
 
     const h = new Date().getHours();
-    const savedName = localStorage.getItem("visitorName") || "";
     const timeGreeting = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-    const fullText = savedName ? `${timeGreeting}, ${savedName}!` : `${timeGreeting}!`;
-    
+    const fullText = `${timeGreeting}!`;
+
     let index = 0;
     greetingEl.textContent = "";
-    
+
     function typeChar() {
       if (index < fullText.length) {
         greetingEl.textContent += fullText.charAt(index);
@@ -30,19 +29,9 @@
         setTimeout(typeChar, 60);
       }
     }
-    
+
     // Start typing after a short delay
     setTimeout(typeChar, 500);
-  }
-
-  // --- Update Greeting (for when name is saved) ---
-  function updateGreeting(name) {
-    const h = new Date().getHours();
-    const greetingEl = document.getElementById("greeting");
-    if (greetingEl) {
-      const base = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-      greetingEl.textContent = name ? `${base}, ${name}!` : `${base}!`;
-    }
   }
 
   // --- Scroll Progress Indicator ---
@@ -64,7 +53,7 @@
   // --- Scroll Reveal Animation ---
   function initScrollReveal() {
     const sections = document.querySelectorAll(".section");
-    
+
     const observerOptions = {
       root: null,
       rootMargin: "-50px",
@@ -101,7 +90,7 @@
         root.classList.toggle("light");
         const currentTheme = root.classList.contains("light") ? "light" : "dark";
         localStorage.setItem("theme", currentTheme);
-        
+
         // Update theme-color meta tag
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
@@ -156,6 +145,64 @@
         }
       });
     });
+  }
+
+  // --- Scroll Spy for Navigation ---
+  function initScrollSpy() {
+    const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+    const sections = [];
+
+    navLinks.forEach(link => {
+      const id = link.getAttribute("href");
+      if (id && id.length > 1) {
+        const section = document.querySelector(id);
+        if (section) {
+          sections.push({ el: section, link: link });
+        }
+      }
+    });
+
+    if (sections.length === 0) return;
+
+    function updateActiveLink() {
+      const scrollPos = window.scrollY + 120;
+
+      let currentSection = sections[0];
+      for (const section of sections) {
+        if (section.el.offsetTop <= scrollPos) {
+          currentSection = section;
+        }
+      }
+
+      navLinks.forEach(link => link.classList.remove("active"));
+      if (currentSection) {
+        currentSection.link.classList.add("active");
+      }
+    }
+
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    updateActiveLink();
+  }
+
+  // --- Back to Top Button ---
+  function initBackToTop() {
+    const btn = document.getElementById("backToTop");
+    if (!btn) return;
+
+    function toggleVisibility() {
+      if (window.scrollY > 400) {
+        btn.classList.add("visible");
+      } else {
+        btn.classList.remove("visible");
+      }
+    }
+
+    btn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
+    toggleVisibility();
   }
 
   // --- Enhanced Contact Form Validation ---
@@ -225,11 +272,44 @@
       }
 
       if (isValid) {
-        if (formNote) {
-          formNote.hidden = false;
-          form.reset();
-          setTimeout(() => (formNote.hidden = true), 4000);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.textContent = "Sending...";
+          submitBtn.disabled = true;
         }
+
+        const formData = new FormData(form);
+        formData.append('_subject', 'New message from abdalmalek.dev!');
+        formData.append('_captcha', 'false');
+
+        fetch("https://formsubmit.co/ajax/abdalmalekfs@gmail.com", {
+          method: "POST",
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (formNote) {
+              formNote.hidden = false;
+              formNote.textContent = "Message sent effectively! I'll get back to you soon.";
+              formNote.style.color = "var(--brand)";
+              form.reset();
+              setTimeout(() => (formNote.hidden = true), 5000);
+            }
+          })
+          .catch(error => {
+            if (formNote) {
+              formNote.hidden = false;
+              formNote.textContent = "Oops! Problem sending message. Please use the email link directly.";
+              formNote.style.color = "#ff4a4a";
+              setTimeout(() => (formNote.hidden = true), 5000);
+            }
+          })
+          .finally(() => {
+            if (submitBtn) {
+              submitBtn.textContent = "Send Message";
+              submitBtn.disabled = false;
+            }
+          });
       } else {
         const firstInvalid = form.querySelector('[aria-invalid="true"]');
         if (firstInvalid) {
@@ -239,126 +319,63 @@
     });
   }
 
-  // --- State: Remember visitor name ---
-  function initNameMemory() {
-    const nameInput = document.getElementById("nameInput");
-    const saveBtn = document.getElementById("saveName");
-    const status = document.getElementById("nameStatus");
-    if (!nameInput || !saveBtn) return;
-
-    const saved = localStorage.getItem("visitorName") || "";
-    if (saved) {
-      nameInput.value = saved;
-      if (status) {
-        status.textContent = `Welcome back, ${saved}!`;
-      }
-    }
-
-    const saveName = () => {
-      const trimmed = nameInput.value.trim();
-      if (trimmed.length < 2) {
-        if (status) status.textContent = "Please enter at least 2 characters.";
-        return;
-      }
-      localStorage.setItem("visitorName", trimmed);
-      updateGreeting(trimmed);
-      if (status) status.textContent = `Saved! Hello, ${trimmed}!`;
-    };
-
-    saveBtn.addEventListener("click", saveName);
-    nameInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        saveName();
-      }
-    });
-  }
-
-  // --- State: Simulated login toggle ---
-  function initLoginState() {
-    const loginBtn = document.getElementById("loginToggle");
-    const loginStatus = document.getElementById("loginStatus");
-    if (!loginBtn || !loginStatus) return;
-
-    const stored = localStorage.getItem("isLoggedIn") === "true";
-
-    const render = (isLoggedIn) => {
-      loginBtn.textContent = isLoggedIn ? "Log Out" : "Log In";
-      loginStatus.textContent = isLoggedIn ? "Logged in (demo)" : "Logged out";
-      localStorage.setItem("isLoggedIn", String(isLoggedIn));
-    };
-
-    render(stored);
-
-    loginBtn.addEventListener("click", () => {
-      const next = !(localStorage.getItem("isLoggedIn") === "true");
-      render(next);
-    });
-  }
-
-  // --- State: Show/Hide projects section ---
-  function initProjectVisibilityToggle() {
-    const toggleBtn = document.getElementById("projectToggle");
-    const projectsSection = document.getElementById("projects");
-    if (!toggleBtn || !projectsSection) return;
-
-    const storedHidden = localStorage.getItem("projectsHidden") === "true";
-
-    const render = (hidden) => {
-      projectsSection.classList.toggle("hidden", hidden);
-      toggleBtn.textContent = hidden ? "Show Projects" : "Hide Projects";
-      localStorage.setItem("projectsHidden", String(hidden));
-    };
-
-    render(storedHidden);
-
-    toggleBtn.addEventListener("click", () => {
-      const nextHidden = !projectsSection.classList.contains("hidden");
-      render(nextHidden);
-    });
-  }
-
   // --- Projects Data ---
   const projectsData = [
+    {
+      title: "FORGE KFUPM",
+      imageUrl: "assets/images/placeholder.png",
+      description:
+        "Bilingual full-stack conference platform with role-based admin portal. Built with React, TypeScript, and Node.js for FORGE @ KFUPM.",
+      tags: ["React", "Node.js", "TypeScript"],
+      year: 2026,
+      type: "Student Club",
+      isPrivate: true,
+      link: null,
+      liveUrl: "https://forge-kfupm.org",
+    },
     {
       title: "Hakeem",
       imageUrl: "assets/images/hakeem.png",
       description:
-        "Recipe and meal-planning startup app for KSA market. Flutter frontend, Spring Boot API, with planned AI-powered meal suggestions.",
-      tags: ["Flutter", "Spring Boot", "Startup"],
+        "Recipe and meal-planning startup app for KSA market. Flutter frontend, Spring Boot API on AWS, with AI-powered meal suggestions.",
+      tags: ["Flutter", "Spring Boot"],
       year: 2025,
+      type: "Startup",
       isPrivate: true,
       link: null,
+      appStoreUrl: "https://apps.apple.com/sa/app/hakeem-smart-cooking/id6757360931",
     },
     {
       title: "TellerRecipes",
       imageUrl: "assets/images/tellerecipes.png",
       description:
-        "Full-stack recipe sharing platform with role-based access (User, Chef, Admin). Vite + React frontend with Node.js/MongoDB backend. Team project for SWE-363.",
-      tags: ["React", "Node.js", "MongoDB", "SWE-363"],
+        "Full-stack recipe sharing platform with role-based access (User, Chef, Admin). Vite + React frontend with Node.js/MongoDB backend.",
+      tags: ["React", "Node.js", "MongoDB"],
       year: 2025,
+      type: "KFUPM",
       isPrivate: false,
       link: "https://github.com/Mlk-KFUPM/TellerRecipes",
-      liveUrl: "https://tellerecipes-client.vercel.app/",
     },
     {
       title: "Portfolio Website",
       imageUrl: "assets/images/portfolio.png",
       description:
-        "Modern responsive portfolio with dynamic projects, theme toggle, scroll animations, and API integration. Built as assignment series for SWE-363 Web Engineering course.",
-      tags: ["HTML", "CSS", "JavaScript", "SWE-363"],
+        "Modern responsive portfolio with dynamic projects, theme toggle, scroll animations, and API integration. Built with vanilla HTML, CSS, and JavaScript.",
+      tags: ["HTML", "CSS", "JavaScript"],
       year: 2025,
+      type: "Personal",
       isPrivate: false,
       link: "https://github.com/Mlk-KFUPM/assignment-4",
-      liveUrl: "https://me-flame-seven.vercel.app/",
+      liveUrl: "https://abdalmalek.dev",
     },
     {
       title: "Algorithmic Trading Bot",
       imageUrl: "assets/images/trading-bot.png",
       description:
-        "Automated trading service with risk management and strategy modules. Built with Java/Spring for data ingestion and order routing.",
-      tags: ["Java", "Spring", "Finance"],
-      year: 2024,
+        "End-to-end autonomous trading system with custom backtesting engine and live PostgreSQL-driven performance dashboard.",
+      tags: ["Spring Boot", "React"],
+      year: 2025,
+      type: "Personal",
       isPrivate: true,
       link: null,
     },
@@ -367,8 +384,9 @@
       imageUrl: "assets/images/reservation-system.png",
       description:
         "Full-stack reservation platform focusing on requirements engineering and system design. Spring Boot backend with React frontend.",
-      tags: ["Spring Boot", "React", "SWE-206"],
+      tags: ["Spring Boot", "React"],
       year: 2023,
+      type: "KFUPM",
       isPrivate: false,
       link: "https://github.com/Mlk-KFUPM/ReservationSystem",
     },
@@ -377,8 +395,9 @@
       imageUrl: "assets/images/tournament-management.png",
       description:
         "Database-driven tournament management system. PostgreSQL with Spring Boot API and React frontend.",
-      tags: ["React", "Spring Boot", "ICS-321"],
+      tags: ["React", "Spring Boot"],
       year: 2022,
+      type: "KFUPM",
       isPrivate: false,
       link: "https://github.com/Mlk-KFUPM/tournament",
     },
@@ -423,27 +442,38 @@
 
     const html = sortedProjects
       .map((project, index) => {
-        let linkHtml = '';
-        
-        if (project.isPrivate) {
-          linkHtml = `<p class="lock">🔒 Private project</p>`;
-        } else {
-          const links = [];
-          if (project.liveUrl) {
-            links.push(`<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-small" aria-label="View ${project.title} live website">View Website</a>`);
-          }
-          if (project.link) {
-            links.push(`<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="link" aria-label="View ${project.title} on GitHub">GitHub →</a>`);
-          }
-          linkHtml = `<div class="project-links">${links.join('')}</div>`;
+        let typeBadge = '';
+        if (project.type === 'Startup') {
+          typeBadge = `<span style="background: rgba(46, 204, 113, 0.1); color: #2ecc71; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(46, 204, 113, 0.2); margin-left: auto;">Startup</span>`;
+        } else if (project.type === 'KFUPM') {
+          typeBadge = `<span style="background: rgba(79, 140, 255, 0.1); color: var(--brand); padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(79, 140, 255, 0.2); margin-left: auto;">KFUPM</span>`;
+        } else if (project.type === 'Personal') {
+          typeBadge = `<span style="background: rgba(168, 85, 247, 0.1); color: #a855f7; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(168, 85, 247, 0.2); margin-left: auto;">Personal</span>`;
+        } else if (project.type === 'Student Club') {
+          typeBadge = `<span style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border: 1px solid rgba(245, 158, 11, 0.2); margin-left: auto;">Student Club</span>`;
         }
 
+        const links = [];
+        if (project.liveUrl) {
+          links.push(`<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-small" aria-label="View ${project.title} live website">View Website</a>`);
+        }
+        if (project.appStoreUrl) {
+          links.push(`<a href="${project.appStoreUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-small" aria-label="Download ${project.title} on App Store">App Store</a>`);
+        }
+
+        if (project.link) {
+          links.push(`<a href="${project.link}" target="_blank" rel="noopener noreferrer" class="link" aria-label="View ${project.title} on GitHub" style="margin-left: auto;">GitHub →</a>`);
+        } else if (project.isPrivate) {
+          links.push(`<span class="muted small" style="margin-left: auto; display: flex; align-items: center;">🔒 Private Repo</span>`);
+        }
+
+        const linkHtml = `<div class="project-links" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: auto; padding-top: 16px;">${links.join('')}</div>`;
+
         return `
-          <article class="card project-card" style="animation-delay: ${index * 0.1}s">
-            <img src="${project.imageUrl}" alt="${project.title} preview" loading="lazy" width="400" height="180" />
-            <h3>${project.title}</h3>
-            <p class="description">${project.description}</p>
-            <p class="muted small">${project.year}</p>
+          <article class="card project-card" style="animation-delay: ${index * 0.1}s; display: flex; flex-direction: column; height: 100%;">
+            <h3 style="display: flex; align-items: center; margin-bottom: 12px; margin-top: 0;">${project.title} ${typeBadge}</h3>
+            <p class="description" style="margin-bottom: 12px;">${project.description}</p>
+            <p class="muted small" style="margin-bottom: 0;">${project.year} • ${project.tags.join(', ')}</p>
             ${linkHtml}
           </article>
         `;
@@ -482,105 +512,6 @@
     });
   }
 
-  // --- Experience Guide ---
-  function initExperienceGuide() {
-    const levelButtons = document.querySelectorAll("#experience .chip[data-level]");
-    const levelTitle = document.getElementById("levelTitle");
-    const levelBody = document.getElementById("levelBody");
-    if (!levelButtons.length || !levelTitle || !levelBody) return;
-
-    const levelCopy = {
-      Beginner:
-        "Start with React basics and Java fundamentals. Build small UI components, practice Git flows, and deploy a simple static site.",
-      Intermediate:
-        "Focus on Spring Boot APIs and Flutter UI patterns. Add tests, pagination, and authentication to existing projects.",
-      Advanced:
-        "Optimize performance, add CI/CD pipelines, and design scalable services. Experiment with trading algorithms and observability.",
-    };
-
-    levelButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const selected = btn.dataset.level;
-        if (!selected) return;
-
-        levelButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        levelTitle.textContent = `${selected} Focus`;
-        levelBody.textContent = levelCopy[selected] || "";
-      });
-    });
-  }
-
-  // --- Inspirational Quotes ---
-  function initQuotes() {
-    const quoteText = document.getElementById("quoteText");
-    const quoteAuthor = document.getElementById("quoteAuthor");
-    const quoteError = document.getElementById("quoteError");
-    const refreshBtn = document.getElementById("quoteRefresh");
-
-    if (!quoteText || !quoteAuthor) return;
-
-    const setLoadingState = () => {
-      quoteText.style.opacity = "0.5";
-      quoteText.textContent = "Loading wisdom...";
-      quoteAuthor.textContent = "";
-      if (quoteError) quoteError.style.display = "none";
-    };
-
-    const setButtonState = (isLoading) => {
-      if (!refreshBtn) return;
-      refreshBtn.disabled = isLoading;
-      refreshBtn.textContent = isLoading ? "Loading..." : "New Quote";
-    };
-
-    const showQuote = (content, author) => {
-      quoteText.style.opacity = "1";
-      quoteText.textContent = `"${content}"`;
-      quoteAuthor.textContent = `— ${author}`;
-    };
-
-    const apiUrl = "https://dummyjson.com/quotes/random";
-
-    const localQuotes = [
-      { text: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
-      { text: "Fix the cause, not the symptom.", author: "Steve Maguire" },
-      { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
-      { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
-      { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs" },
-    ];
-
-    async function fetchQuote() {
-      setLoadingState();
-      setButtonState(true);
-
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error("API failed");
-
-        const data = await response.json();
-        showQuote(data.quote, data.author);
-      } catch (err) {
-        console.warn("Quote API unavailable, using local fallback:", err);
-        const randomLocal = localQuotes[Math.floor(Math.random() * localQuotes.length)];
-        showQuote(randomLocal.text, randomLocal.author);
-
-        if (quoteError) {
-          quoteError.textContent = "Showing offline quotes";
-          quoteError.style.display = "block";
-        }
-      } finally {
-        setButtonState(false);
-      }
-    }
-
-    if (refreshBtn) {
-      refreshBtn.addEventListener("click", fetchQuote);
-    }
-
-    fetchQuote();
-  }
-
   // --- Initialize All Features ---
   document.addEventListener("DOMContentLoaded", () => {
     setYear();
@@ -590,14 +521,11 @@
     initThemeToggle();
     initMobileNav();
     initSmoothScroll();
+    initScrollSpy();
+    initBackToTop();
     initContactForm();
     loadProjectsFromData();
     initProjectFilters();
     initProjectSort();
-    initExperienceGuide();
-    initNameMemory();
-    initLoginState();
-    initProjectVisibilityToggle();
-    initQuotes();
   });
 })();
